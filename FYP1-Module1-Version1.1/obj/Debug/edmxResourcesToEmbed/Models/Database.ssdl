@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fypModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="idea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="PostedByTeacher" Type="int" />
+    <Property Name="PostedByStudent" Type="int" />
+    <Property Name="checker" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="RollNumber" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="teacher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_STUDENT">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="idea" Type="Self.idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="idea">
+        <PropertyRef Name="PostedByStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TEACHER">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="idea" Type="Self.idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="idea">
+        <PropertyRef Name="PostedByTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="fypModelStoreContainer">
+    <EntitySet Name="idea" EntityType="Self.idea" Schema="fyp" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="fyp" store:Type="Tables" />
+    <EntitySet Name="teacher" EntityType="Self.teacher" Schema="fyp" store:Type="Tables" />
+    <AssociationSet Name="FK_STUDENT" Association="Self.FK_STUDENT">
+      <End Role="student" EntitySet="student" />
+      <End Role="idea" EntitySet="idea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TEACHER" Association="Self.FK_TEACHER">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="idea" EntitySet="idea" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

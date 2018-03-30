@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fypModelStoreContainer" CdmEntityContainer="fypEntities">
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="fypModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RollNumber" ColumnName="RollNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teachers">
+      <EntityTypeMapping TypeName="fypModel.teacher">
+        <MappingFragment StoreEntitySet="teacher">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ideas">
+      <EntityTypeMapping TypeName="fypModel.idea">
+        <MappingFragment StoreEntitySet="idea">
+          <ScalarProperty Name="checker" ColumnName="checker" />
+          <ScalarProperty Name="PostedByStudent" ColumnName="PostedByStudent" />
+          <ScalarProperty Name="PostedByTeacher" ColumnName="PostedByTeacher" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
